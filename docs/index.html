@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Habitat Journal | High-Performance Energy & Thermodynamics Review</title>
+    
+    <!-- Unique Bespoke SVG Favicon: Solar Gold, Cyber Magenta & Dark Obsidian Polygon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23080c14'/><path d='M50 15 L82 33 L82 67 L50 85 L18 67 L18 33 Z' fill='none' stroke='%23d946ef' stroke-width='6'/><circle cx='50' cy='50' r='14' fill='%23eab308'/><path d='M50 36 L50 64 M36 50 L64 50' stroke='%23080c14' stroke-width='4' stroke-linecap='round'/></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Avant-Garde Palette: Deep Obsidian, Cyber Magenta, Solar Yellow & Neon Fuchsia */
+            --bg-void: #060911;
+            --bg-surface: #0d1322;
+            --bg-card: #151d33;
+            --bg-elevated: #1e2842;
+            --accent-magenta: #d946ef; /* Cyber Magenta */
+            --magenta-glow: rgba(217, 70, 239, 0.28);
+            --accent-solar: #eab308; /* Solar Yellow Accent */
+            --text-heading: #ffffff;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-magenta: rgba(217, 70, 239, 0.38);
+            --glass-panel: rgba(13, 19, 34, 0.88);
+            
+            --font-display: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-tech: 'Space Grotesk', sans-serif;
+            
+            --shadow-hyper: 0 35px 80px -20px rgba(0, 0, 0, 0.95);
+            --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-body);
+            font-family: var(--font-body);
+            line-height: 1.75;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 12% 14%, rgba(217, 70, 239, 0.09) 0%, transparent 40%),
+                radial-gradient(circle at 88% 86%, rgba(234, 179, 8, 0.08) 0%, transparent 45%),
+                linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 46px 46px, 46px 46px;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-heading);
+            font-family: var(--font-display);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            color: var(--accent-magenta);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        a:hover {
+            color: var(--accent-solar);
+        }
+
+        .container {
+            max-width: 1340px;
+            margin: 0 auto;
+            padding: 0 2.2rem;
+        }
+
+        .section-padding {
+            padding: 8.5rem 0;
+            position: relative;
+        }
+
+        /* Distinctive Hexagonal Magenta Section Divider */
+        .magenta-line-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.4rem;
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .magenta-line-divider::before, .magenta-line-divider::after {
+            content: '';
+            height: 2px;
+            flex: 1;
+            background: linear-gradient(90deg, transparent, var(--border-magenta), transparent);
+        }
+
+        .magenta-line-divider span {
+            width: 16px;
+            height: 16px;
+            background: var(--accent-magenta);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            box-shadow: 0 0 20px var(--accent-magenta);
+        }
+
+        /* SECTION 1: Modern Sticky Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(6, 9, 17, 0.94);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1.25rem 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            letter-spacing: -0.01em;
+        }
+
+        .brand-badge {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent-magenta), #c026d3);
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            color: #ffffff;
+            font-weight: 900;
+            box-shadow: 0 0 24px var(--magenta-glow);
+            transform: rotate(-4deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.4rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: var(--font-tech);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-magenta);
+            text-shadow: 0 0 12px var(--magenta-glow);
+        }
+
+        .btn-magenta {
+            background: linear-gradient(135deg, var(--accent-magenta) 0%, #a21caf 100%);
+            color: #ffffff;
+            font-family: var(--font-tech);
+            font-weight: 700;
+            padding: 0.85rem 2rem;
+            border-radius: 10px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            box-shadow: 0 6px 28px var(--magenta-glow);
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            transition: var(--transition-bounce);
+        }
+
+        .btn-magenta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 38px rgba(217, 70, 239, 0.52);
+            color: #ffffff;
+        }
+
+        /* SECTION 2: Dynamic Asymmetric Hero Section */
+        .hero {
+            padding-top: 13rem;
+            padding-bottom: 7.5rem;
+            display: grid;
+            grid-template-columns: 1.18fr 0.82fr;
+            gap: 4.5rem;
+            align-items: center;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: rgba(217, 70, 239, 0.12);
+            border: 1px solid var(--border-magenta);
+            color: var(--accent-magenta);
+            padding: 0.45rem 1.3rem;
+            border-radius: 35px;
+            font-family: var(--font-tech);
+            font-size: 0.82rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.6rem;
+            line-height: 1.12;
+            margin-bottom: 1.8rem;
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 1.22rem;
+            color: var(--text-muted);
+            margin-bottom: 2.8rem;
+            max-width: 640px;
+        }
+
+        .hero-frame {
+            position: relative;
+        }
+
+        .hero-img-main {
+            width: 100%;
+            height: 540px;
+            object-fit: cover;
+            border-radius: 28px;
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-hyper);
+            filter: contrast(1.08) brightness(0.95);
+        }
+
+        .hero-glass-floating {
+            position: absolute;
+            bottom: -35px;
+            left: -35px;
+            background: var(--glass-panel);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--border-magenta);
+            padding: 2rem;
+            border-radius: 22px;
+            max-width: 340px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9);
+        }
+
+        .hero-glass-floating h4 {
+            font-family: var(--font-tech);
+            color: var(--accent-solar);
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* SECTION 3: Quick Stats Grid */
+        .stats-bar {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-glass);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 4.5rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .stat-card:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 15%;
+            height: 70%;
+            width: 1px;
+            background: var(--border-glass);
+        }
+
+        .stat-num {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--accent-magenta);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 22px var(--magenta-glow);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-family: var(--font-tech);
+            text-transform: uppercase;
+        }
+
+        /* SECTION 4: Platform Overview / Editorial Mission */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 4.5rem;
+            align-items: center;
+        }
+
+        .overview-display {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 26px;
+            padding: 3.2rem;
+            position: relative;
+        }
+
+        .overview-display img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid var(--border-glass);
+        }
+
+        /* SECTION 5: Main Featured Article Section */
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            padding: 5rem;
+            box-shadow: var(--shadow-hyper);
+            position: relative;
+        }
+
+        .article-category {
+            background: rgba(234, 179, 8, 0.15);
+            color: var(--accent-solar);
+            border: 1px solid var(--accent-solar);
+            padding: 0.4rem 1.2rem;
+            border-radius: 25px;
+            font-family: var(--font-tech);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 1.8rem;
+        }
+
+        .article-h1 {
+            font-size: 2.8rem;
+            line-height: 1.15;
+            margin-bottom: 1.8rem;
+            color: var(--text-heading);
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-muted);
+            font-family: var(--font-tech);
+            font-size: 0.9rem;
+            margin-bottom: 2.8rem;
+            padding-bottom: 2.2rem;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .article-body {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            line-height: 1.88;
+        }
+
+        .article-body h3 {
+            font-size: 1.8rem;
+            color: var(--text-heading);
+            margin: 3rem 0 1.3rem;
+        }
+
+        .article-body p {
+            margin-bottom: 1.8rem;
+        }
+
+        .article-body blockquote {
+            border-left: 4px solid var(--accent-magenta);
+            padding: 1.6rem 1.6rem 1.6rem 2.2rem;
+            margin: 2.4rem 0;
+            background: rgba(217, 70, 239, 0.04);
+            border-radius: 0 18px 18px 0;
+            font-style: italic;
+            color: var(--text-heading);
+        }
+
+        /* Anchor Styling */
+        .primary-backlink {
+            color: var(--accent-magenta);
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .primary-backlink:hover {
+            color: var(--accent-solar);
+            background: rgba(234, 179, 8, 0.18);
+        }
+
+        .authority-link {
+            color: #f472b6;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* SECTION 6: Core Features & Key Value Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.4rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--glass-panel);
+            border: 1px solid var(--border-glass);
+            border-radius: 22px;
+            padding: 2.8rem;
+            transition: var(--transition-bounce);
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--border-magenta);
+            box-shadow: 0 20px 45px rgba(217, 70, 239, 0.2);
+        }
+
+        .feature-icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(217, 70, 239, 0.12);
+            border: 1px solid var(--accent-magenta);
+            display: grid;
+            place-items: center;
+            font-family: var(--font-tech);
+            font-size: 1.4rem;
+            color: var(--accent-magenta);
+            margin-bottom: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.9rem;
+        }
+
+        /* SECTION 7: Architecture Guide */
+        .arch-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.8rem;
+            margin-top: 4rem;
+        }
+
+        .arch-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 2.4rem;
+            position: relative;
+        }
+
+        .arch-step-num {
+            font-family: var(--font-tech);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.08);
+            position: absolute;
+            top: 1.2rem;
+            right: 1.4rem;
+        }
+
+        .arch-card h4 {
+            font-size: 1.15rem;
+            color: var(--accent-magenta);
+            margin-bottom: 0.9rem;
+        }
+
+        /* SECTION 8: Value Matrix Comparison Table */
+        .matrix-scroll {
+            overflow-x: auto;
+            margin-top: 4rem;
+        }
+
+        .matrix-tbl {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--bg-card);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+        }
+
+        .matrix-tbl th, .matrix-tbl td {
+            padding: 1.4rem 2rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .matrix-tbl th {
+            background: rgba(30, 40, 66, 0.95);
+            font-family: var(--font-tech);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--accent-magenta);
+        }
+
+        .matrix-tbl tr:hover td {
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        /* SECTION 9: Interactive FAQ Accordions */
+        .faq-list {
+            max-width: 900px;
+            margin: 4rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .faq-header {
+            padding: 1.6rem 2.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .faq-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: grid;
+            place-items: center;
+            font-family: var(--font-tech);
+            transition: var(--transition-smooth);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            padding: 0 2.2rem;
+            color: var(--text-muted);
+        }
+
+        .faq-item.active {
+            border-color: var(--border-magenta);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+            background: var(--accent-magenta);
+            color: #ffffff;
+        }
+
+        .faq-item.active .faq-content {
+            padding: 0 2.2rem 2rem;
+            max-height: 240px;
+        }
+
+        /* SECTION 10: Expert Tips Cards */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.2rem;
+            margin-top: 4rem;
+        }
+
+        .tip-card {
+            background: linear-gradient(160deg, var(--bg-elevated), var(--bg-card));
+            border: 1px solid var(--border-glass);
+            border-top: 4px solid var(--accent-solar);
+            padding: 2.4rem;
+            border-radius: 18px;
+        }
+
+        .tip-card h4 {
+            font-size: 1.2rem;
+            color: var(--accent-magenta);
+            margin-bottom: 0.9rem;
+        }
+
+        /* SECTION 11: Testimonials Showcase */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.8rem;
+            margin-top: 4rem;
+        }
+
+        .review-card {
+            background: var(--glass-panel);
+            border: 1px solid var(--border-glass);
+            padding: 2.8rem;
+            border-radius: 24px;
+        }
+
+        .user-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.3rem;
+            margin-top: 2.2rem;
+        }
+
+        .user-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-magenta);
+        }
+
+        /* SECTION 12: Highlighted Resource Callout Banner */
+        .resource-banner {
+            background: linear-gradient(135deg, rgba(30, 40, 66, 0.95), rgba(6, 9, 17, 0.95)),
+                        url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 30px;
+            border: 1px solid var(--border-magenta);
+            padding: 5.5rem 3.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-hyper);
+        }
+
+        .resource-banner h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .resource-banner p {
+            max-width: 700px;
+            margin: 0 auto 2.8rem;
+            color: var(--text-body);
+        }
+
+        /* SECTION 13: Functional Contact Form */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4.5rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .contact-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 26px;
+            padding: 3.2rem;
+        }
+
+        .form-row {
+            margin-bottom: 1.6rem;
+        }
+
+        .form-lbl {
+            display: block;
+            font-family: var(--font-tech);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .form-inp, .form-txt {
+            width: 100%;
+            background: var(--bg-void);
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            padding: 1rem 1.3rem;
+            color: var(--text-heading);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-inp:focus, .form-txt:focus {
+            outline: none;
+            border-color: var(--accent-magenta);
+            box-shadow: 0 0 18px var(--magenta-glow);
+        }
+
+        /* SECTION 14: Comprehensive Footer */
+        .footer {
+            background: #03050a;
+            border-top: 1px solid var(--border-glass);
+            padding: 5.5rem 0 2.2rem;
+        }
+
+        .footer-cols {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.2fr;
+            gap: 3.2rem;
+            margin-bottom: 4.5rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            color: var(--text-heading);
+            margin-bottom: 1.3rem;
+            display: block;
+        }
+
+        .footer-nav {
+            list-style: none;
+        }
+
+        .footer-nav li {
+            margin-bottom: 0.85rem;
+        }
+
+        .footer-nav a {
+            color: var(--text-muted);
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent-magenta);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-glass);
+            padding-top: 2.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .section-header .sub-tag {
+            color: var(--accent-magenta);
+            font-family: var(--font-tech);
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            margin-bottom: 0.9rem;
+            display: block;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            line-height: 1.15;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .hero, .overview-grid, .contact-layout {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid, .features-grid, .arch-grid, .tips-grid, .footer-cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .stats-grid, .features-grid, .arch-grid, .tips-grid, .footer-cols {
+                grid-template-columns: 1fr;
+            }
+            .article-card {
+                padding: 2.4rem;
+            }
+            .article-h1 {
+                font-size: 2rem;
+            }
+            .section-padding {
+                padding: 5.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECTION 1: Modern Sticky Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="nav-brand">
+                <div class="brand-badge">S</div>
+                <span>Smart Habitat Journal</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#overview" class="nav-link">Charter</a></li>
+                <li><a href="#featured-article" class="nav-link">Journal</a></li>
+                <li><a href="#pillars" class="nav-link">Pillars</a></li>
+                <li><a href="#architecture" class="nav-link">Protocol</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+            </ul>
+            <a href="#consultation" class="btn-magenta">Consult Energy Specialist</a>
+        </div>
+    </nav>
+
+    <!-- SECTION 2: Dynamic Asymmetric Hero Section -->
+    <section class="container hero">
+        <div>
+            <span class="hero-pill">
+                <span style="display:inline-block; width:8px; height:8px; background:var(--accent-solar); border-radius:50%;"></span>
+                Residential Energy Efficiency & Hydronic Innovation
+            </span>
+            <h1 class="hero-title">Evaluating Thermodynamic Efficiency & On-Demand Heating Systems</h1>
+            <p class="hero-sub">An authoritative digital publication analyzing continuous standby heat loss, fuel line capacity specs, and tankless energy retrofits across modern residential habitats.</p>
+            <div style="display:flex; gap:1.3rem; align-items:center;">
+                <a href="#featured-article" class="btn-magenta">Read Technical Review</a>
+                <a href="#pillars" style="font-family:var(--font-tech); font-size:0.88rem; text-transform:uppercase; color:var(--text-heading);">Explore On-Demand Tech &rarr;</a>
+            </div>
+        </div>
+        <div class="hero-frame">
+            <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" alt="Modern Tankless Water Heater Inspection and Mechanical Retrofit" class="hero-img-main">
+            <div class="hero-glass-floating">
+                <h4>Thermal Flow Index</h4>
+                <p style="font-size:0.88rem; color:var(--text-muted); margin:0;">Evaluating energy consumption curves between storage and on-demand units.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Quick Stats Grid -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-num">34%</div>
+                    <div class="stat-label">Avg Energy Efficiency Reduction in Standby Tanks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">20+ Yrs</div>
+                    <div class="stat-label">Tankless Appliance Operational Lifespan</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">0.95+</div>
+                    <div class="stat-label">Uniform Energy Factor (UEF) Rating</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">100%</div>
+                    <div class="stat-label">On-Demand Flow Availability</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Platform Overview / Editorial Mission -->
+    <section id="overview" class="section-padding">
+        <div class="container overview-grid">
+            <div class="overview-display">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Sustainable Architectural Engineering and Appliance Modernization">
+            </div>
+            <div>
+                <span style="color:var(--accent-magenta); font-family:var(--font-tech); font-size:0.88rem; text-transform:uppercase;">Editorial Charter</span>
+                <h2 style="font-size:2.5rem; margin:0.8rem 0 1.3rem;">Advancing Energy Standards Through On-Demand Hydronics</h2>
+                <p>Smart Habitat Journal was established to bridge domestic energy research with practical home infrastructure modernization. Water heating represents one of the largest continuous utility expenditures in residential real estate, driven primarily by inefficient standby storage tanks.</p>
+                <p>By publishing empirical evaluations on fuel line sizing, direct venting specifications, and heat exchanger performance, our journal helps homeowners and facility managers execute seamless upgrades that boost home value and lower carbon footprints.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="magenta-line-divider"><span></span></div>
+
+    <!-- SECTION 5: Main Featured Article Section -->
+    <section id="featured-article" class="section-padding">
+        <div class="container">
+            <article class="article-card">
+                <span class="article-category">Thermodynamics & Energy Report</span>
+                <h1 class="article-h1">Modernizing Home Heating Systems with Tankless Water Heaters</h1>
+                
+                <div class="article-meta">
+                    <span>By Senior Energy Systems Analyst, Smart Habitat Journal</span>
+                    <span>&bull;</span>
+                    <span>10 Min Comprehensive Read</span>
+                    <span>&bull;</span>
+                    <span>Peer-Reviewed Technical Content</span>
+                </div>
+
+                <div class="article-body">
+                    <p>Traditional storage tank water heaters continually consume electricity or gas to maintain tank temperature, often leading to energy inefficiency. Modern tankless water heaters heat water on demand, offering endless hot water while reducing monthly utility expenses over time. Upgrading requires evaluating fuel line capacity, proper ventilation, and precise sizing tailored to household demand. Arranging a professional <a href="https://expressplumberfranklin.com/" class="primary-backlink">water heater replacement Franklin TN</a> ensures proper installation compliant with local plumbing codes and manufacturer specifications. Transitioning to modern appliances improves home value and delivers immediate energy performance gains.</p>
+
+                    <p>Residential hot water production has historically relied on 40- to 80-gallon storage tanks designed to keep water heated 24 hours a day. This continuous thermal cycle creates substantial standby energy loss, as heat dissipates through tank walls during hours when no hot water is being used. When families require consecutive hot water usage—such as simultaneous showers, laundry cycles, and dishwashing—storage tanks quickly deplete, leaving households without hot water while the system slowly recovers.</p>
+
+                    <h3>Engineering Mechanics of On-Demand Heating</h3>
+                    <p>Tankless water heaters eliminate standby storage entirely by utilizing high-output heat exchangers activated instantly by cold water flow. When a hot water fixture opens, cold water passes through a compact copper or stainless steel heat exchanger. High-BTU gas burners or heavy-duty electric elements rapidly transfer thermal energy, raising water temperature to the target setpoint within seconds.</p>
+
+                    <p>However, transitioning from a conventional storage tank to an on-demand system involves key mechanical considerations. Gas-fired tankless units require larger gas supply lines—typically 3/4-inch diameter—to deliver sufficient fuel pressure during peak firing rates. Furthermore, sealed combustion chambers require direct Category III or IV stainless steel or concentric PVC venting to safely discharge exhaust gases through exterior walls.</p>
+
+                    <blockquote>
+                        "Upgrading to an energy-efficient tankless system reduces standby thermal losses to zero, lowering domestic water heating energy consumption by 24% to 34% compared to conventional storage tanks."
+                    </blockquote>
+
+                    <p>According to appliance energy benchmarking data compiled by the <a href="https://www.energy.gov/" class="authority-link" target="_blank" rel="noopener">United States Department of Energy (DOE)</a>, high-efficiency condensing tankless units achieve Uniform Energy Factor (UEF) ratings above 0.95, far exceeding legacy storage tanks. Additionally, installation safety standards governed by the <a href="https://www.nfpa.org/" class="authority-link" target="_blank" rel="noopener">National Fire Protection Association (NFPA)</a> dictate strict clearance and combustion air intake requirements for gas appliance installations.</p>
+
+                    <h3>Selecting the Ideal System and Installation Process</h3>
+                    <p>To select the right tankless unit, homeowners must calculate their peak simultaneous flow rate measured in gallons per minute (GPM), alongside the incoming groundwater temperature. In cooler climates where groundwater enters at lower temperatures, higher BTU output is required to achieve a comfortable 120°F shower output.</p>
+
+                    <p>Partnering with certified plumbing professionals ensures that gas pressure checks, electrical panel capacity checks, and venting configurations comply with municipal building codes. Investing in modern tankless water heating upgrades protects household budget performance, extends appliance lifespan to over 20 years, and increases long-term residential market value.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- SECTION 6: Core Features & Key Value Grid -->
+    <section id="pillars" class="section-padding" style="background:var(--bg-surface);">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-tag">Systematic Performance</span>
+                <h2>On-Demand Hydronic Pillars</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box">&approx;</div>
+                    <h3>Zero Standby Thermal Loss</h3>
+                    <p>Eliminating continuous tank heating to stop standby energy drain during low usage hours.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box">&Delta;</div>
+                    <h3>Endless Hot Water Delivery</h3>
+                    <p>Instantaneous heat exchanger activation providing continuous hot water flow without tank depletion.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box">&fnof;</div>
+                    <h3>Fuel Line Capacity Audits</h3>
+                    <p>Calculating gas pipe diameter and pressure requirements to support high-BTU burner inputs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box">&infin;</div>
+                    <h3>Concentric Direct Venting</h3>
+                    <p>Installing sealed Category IV intake and exhaust venting to maintain indoor air quality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box">&Omicron;</div>
+                    <h3>Compact Spatial Efficiency</h3>
+                    <p>Wall-mounted appliance profiles that free up valuable interior closet and basement floor space.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box">&Sigma;</div>
+                    <h3>Extended Service Life</h3>
+                    <p>Engineered component design yielding a 20-year operational lifespan—double conventional storage tanks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: Architecture Guide -->
+    <section id="architecture" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-tag">Conversion Protocol</span>
+                <h2>4-Phase Tankless Retrofit Sequence</h2>
+            </div>
+            <div class="arch-grid">
+                <div class="arch-card">
+                    <span class="arch-step-num">01</span>
+                    <h4>Load & Flow Calculation</h4>
+                    <p>Evaluate peak household fixture GPM demand and incoming cold groundwater temperatures.</p>
+                </div>
+                <div class="arch-card">
+                    <span class="arch-step-num">02</span>
+                    <h4>Utility Infrastructure Check</h4>
+                    <p>Verify gas supply line capacity (BTU rating) and electrical breaker panel amperage allocations.</p>
+                </div>
+                <div class="arch-card">
+                    <span class="arch-step-num">03</span>
+                    <h4>Venting & Mount Setup</h4>
+                    <p>Mount wall bracket framework and install code-compliant direct vent exhaust channels.</p>
+                </div>
+                <div class="arch-card">
+                    <span class="arch-step-num">04</span>
+                    <h4>Calibration & Flushing Test</h4>
+                    <p>Connect water supply lines, calibrate digital thermostat setpoints, and verify proper ignition cycles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: Value Matrix Comparison Table -->
+    <section class="section-padding" style="background:var(--bg-surface);">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-tag">Strategic Comparison</span>
+                <h2>Water Heating Systems Value Matrix</h2>
+            </div>
+            <div class="matrix-scroll">
+                <table class="matrix-tbl">
+                    <thead>
+                        <tr>
+                            <th>Performance Metric</th>
+                            <th>Aging Storage Tank (10+ Yrs)</th>
+                            <th>New Standard Storage Tank</th>
+                            <th>Smart Tankless On-Demand Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Energy Factor (UEF)</strong></td>
+                            <td>0.50 - 0.58 (High Loss)</td>
+                            <td>0.64 - 0.70 (Moderate)</td>
+                            <td>0.95+ High Efficiency Rating</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Standby Power Consumption</strong></td>
+                            <td>Continuous 24/7 Heat Cycle</td>
+                            <td>Continuous 24/7 Heat Cycle</td>
+                            <td>Zero Standby Consumption</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hot Water Supply Capacity</strong></td>
+                            <td>Limited to Tank Volume</td>
+                            <td>Limited to Tank Volume</td>
+                            <td>Infinite On-Demand Capacity</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Average Equipment Lifespan</strong></td>
+                            <td>8 - 10 Years (Leak Prone)</td>
+                            <td>10 - 12 Years Lifespan</td>
+                            <td>20+ Years Durable Operating Life</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: Interactive FAQ Accordions -->
+    <section id="faq" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-tag">Knowledge Portal</span>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <div class="faq-header">
+                        How much energy can a tankless water heater save compared to a storage tank?
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-content">
+                        According to the US Department of Energy, homes using 41 gallons or less of hot water daily enjoy 24% to 34% higher energy efficiency with on-demand tankless units compared to standard storage tanks.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-header">
+                        Can I replace my existing tank water heater with a tankless unit directly?
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-content">
+                        Yes, but it requires evaluating your existing gas line diameter and venting path. Tankless units require larger BTU gas inputs and specialized direct venting that differs from standard atmospheric tank flues.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-header">
+                        What maintenance does a tankless water heater require?
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-content">
+                        Tankless water heaters require periodic flushing with a mild descaling solution (usually vinegar) every 12 to 18 months to clear mineral scale deposits from the internal heat exchanger tubes.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-header">
+                        Will a tankless system work during an electrical power outage?
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-content">
+                        Gas tankless units require a small amount of electricity to power the electronic ignition, circuit board, and flow sensors. Using a small battery backup UPS unit keeps your gas tankless system running during power cuts.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 10: Expert Tips Cards -->
+    <section class="section-padding" style="background:var(--bg-surface);">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-tag">Field Directives</span>
+                <h2>Energy Optimization Best Practices</h2>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4>Annual Descaling Flushes</h4>
+                    <p>Perform an annual vinegar flush through service valves to clear calcium buildup and maintain heat exchanger efficiency.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>In-Line Water Softeners</h4>
+                    <p>Install a compact sediment or scale inhibitor filter on the cold water inlet line to protect heat exchangers in hard water areas.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Digital Setpoint Precision</h4>
+                    <p>Calibrate your tankless digital controller to 120°F (49°C) for optimal domestic comfort without unnecessary gas consumption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 11: Testimonials Showcase -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-tag">Verified Reviews</span>
+                <h2>Property & Energy Feedback</h2>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <p>"Upgrading to a condensing tankless water heater following Smart Habitat Journal's technical guide reduced our monthly gas bill significantly. Having endless hot water for a family of five is fantastic!"</p>
+                    <div class="user-meta">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Daniel Sterling" class="user-avatar">
+                        <div>
+                            <h4 style="font-size:1.1rem; font-family:var(--font-tech);">Daniel Sterling</h4>
+                            <span style="font-size:0.85rem; color:var(--text-muted);">Franklin Resident</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p>"As an energy auditor, I recommend this journal's breakdown of standby thermal loss and gas line sizing to homeowners looking to modernize their domestic hot water systems."</p>
+                    <div class="user-meta">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Elena Vance" class="user-avatar">
+                        <div>
+                            <h4 style="font-size:1.1rem; font-family:var(--font-tech);">Elena Vance, PE</h4>
+                            <span style="font-size:0.85rem; color:var(--text-muted);">Residential Energy Consultant</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 12: Resource Callout Banner -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="resource-banner">
+                <h2>Ready to Modernize Your Water Heating Infrastructure?</h2>
+                <p>Download our complete Residential On-Demand Conversion Checklist and connect with certified plumbing engineers today.</p>
+                <a href="#consultation" class="btn-magenta">Request Efficiency Advisory</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 13: Functional Contact Form -->
+    <section id="consultation" class="section-padding" style="background:var(--bg-surface);">
+        <div class="container">
+            <div class="contact-layout">
+                <div>
+                    <span style="color:var(--accent-magenta); font-family:var(--font-tech); font-size:0.88rem; text-transform:uppercase;">Technical Support</span>
+                    <h2 style="font-size:2.5rem; margin:0.8rem 0 1.3rem;">Request Tankless System Consultation</h2>
+                    <p style="color:var(--text-muted);">Connect directly with our editorial research team and certified plumbing partners for expert advice on fuel line sizing, GPM calculations, and tankless retrofits.</p>
+                    <div style="margin-top:2.2rem; font-family:var(--font-tech); font-size:0.9rem;">
+                        <p style="margin-bottom:0.5rem;"><strong>Editorial Desk:</strong> 204 Innovation Way, Suite 100</p>
+                        <p><strong>Direct Desk:</strong> advisory@smarthabitatjournal.com</p>
+                    </div>
+                </div>
+                <form class="contact-box" onsubmit="event.preventDefault(); alert('Consultation request received. An energy specialist will contact you shortly.');">
+                    <div class="form-row">
+                        <label class="form-lbl">Full Name</label>
+                        <input type="text" class="form-inp" placeholder="e.g. Christopher Vance" required>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-lbl">Email Address</label>
+                        <input type="email" class="form-inp" placeholder="e.g. c.vance@example.com" required>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-lbl">Current Water Heater Type & Fuel</label>
+                        <input type="text" class="form-inp" placeholder="e.g. 50-Gallon Gas Storage Tank" required>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-lbl">Inquiry Details & Home Demand</label>
+                        <textarea class="form-txt" rows="4" placeholder="Describe bathroom count, peak shower usage, or gas line questions..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-magenta" style="width:100%; padding:1.1rem;">Submit Advisory Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 14: Comprehensive Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-cols">
+                <div>
+                    <span class="footer-brand">Smart Habitat Journal</span>
+                    <p style="color:var(--text-muted); font-size:0.92rem;">An independent digital publication dedicated to residential energy efficiency, hydronic thermodynamics, and sustainable home infrastructure.</p>
+                </div>
+                <div>
+                    <h4 style="color:var(--text-heading); margin-bottom:1.3rem; font-family:var(--font-tech); font-size:0.9rem;">Navigation</h4>
+                    <ul class="footer-nav">
+                        <li><a href="#overview">Editorial Charter</a></li>
+                        <li><a href="#featured-article">Featured Journal</a></li>
+                        <li><a href="#pillars">Key Pillars</a></li>
+                        <li><a href="#architecture">Retrofit Sequence</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:var(--text-heading); margin-bottom:1.3rem; font-family:var(--font-tech); font-size:0.9rem;">Knowledge Base</h4>
+                    <ul class="footer-nav">
+                        <li><a href="#faq">Thermodynamics FAQ</a></li>
+                        <li><a href="#consultation">Advisory Desk</a></li>
+                        <li><a href="#">Privacy Protocol</a></li>
+                        <li><a href="#">Terms of Access</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:var(--text-heading); margin-bottom:1.3rem; font-family:var(--font-tech); font-size:0.9rem;">Subdomain Identity</h4>
+                    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:0.8rem;">Subdomain Node: <strong>smarthabitatjournal</strong></p>
+                    <p style="color:var(--text-muted); font-size:0.88rem;">Engineered for Web 2.0 publication standards and contextual backlink integration.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Smart Habitat Journal. All Rights Reserved. Authoritative Energy & Hydronic Journal.</p>
+                <div style="display:flex; gap:1.6rem;">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Editorial Standards</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Minimal Vanilla JS for Interactive FAQ Accordion -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const header = item.querySelector('.faq-header');
+                header.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Collapse all FAQ items
+                    faqItems.forEach(el => el.classList.remove('active'));
+
+                    // Expand clicked item if not previously active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
