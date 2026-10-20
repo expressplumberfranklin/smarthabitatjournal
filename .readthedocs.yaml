@@ -1,6 +1,5 @@
 version: 2
 
-# Build documentation with MkDocs
 build:
   os: ubuntu-22.04
   tools:
@@ -9,7 +8,6 @@ build:
 mkdocs:
   configuration: mkdocs.yml
 
-# Install dependencies from requirements.txt
 python:
   install:
     - requirements: requirements.txt
