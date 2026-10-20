@@ -1,11 +1,13 @@
 site_name: Smart Habitat Journal
 site_description: High-Performance Energy & Thermodynamics Review
-site_url: https://smarthabitatjournal.readthedocs.io/
 
+# Custom HTML files / static files ko inclusion allow karne ke liye
+use_directory_urls: false
+
+# HTML and static assets handle karne ke liye theme config
 theme:
-  name: readthedocs
-  palette:
-    primary: deep purple
+  name: null
+  custom_dir: docs
 
 nav:
-  - Home: index.md
+  - Home: index.html
