@@ -1,0 +1,11 @@
+site_name: Smart Habitat Journal
+site_description: High-Performance Energy & Thermodynamics Review
+site_url: https://smarthabitatjournal.readthedocs.io/
+
+theme:
+  name: readthedocs
+  palette:
+    primary: deep purple
+
+nav:
+  - Home: index.md
